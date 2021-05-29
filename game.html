@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rock, Paper, Scissors! - Game</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <div id="game-container">
+            <div id="top-page">
+                <div id="game-title"><h1>Choose 1</h1></div>
+                <div id="timer"></div>
+            </div>
+            <div id="rps">
+                <button class="rock" onclick="rpsButtonClicked('rock')">Rock</button>
+                <button class="paper" onclick="rpsButtonClicked('paper')">Paper</button>
+                <button class="scissors" onclick="rpsButtonClicked('scissors')">Scissors</button>
+            </div>
+        </div>
+
+        <script>
+
+            let timerId = null;
+
+            function rpsButtonClicked(choice) {
+
+                clearInterval(timerId);
+                localStorage.setItem('choice', choice);
+                window.location='./result.html';
+
+            }
+
+            function countdown(seconds){
+                
+                let el = document.getElementById("timer");
+                
+                timerId = setInterval(     () => {
+                    el.innerText = seconds;
+                    
+                    if (seconds == -1) {
+                        el.innerText = "Time's Up!";
+                        // clearInterval(timerId);
+                        rpsButtonClicked(null);
+                    }
+
+                    seconds -= 1;
+                }, 1000);
+                
+            }
+
+            countdown(10);
+
+        </script>
+
+    </body>
+</html>

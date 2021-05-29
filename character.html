@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rock, Paper, Scissors! - Choose Your Character</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <div id= "main-character-container">
+            <div id="title">
+                <h1>Choose Your Character</h1>
+            </div>
+            
+            <div id="character-options">
+                <button class="rock" onclick="setHand('rock')"><img src="./Hands/rock - yellow.jpg"></button>
+                <button class="paper" onclick="setHand('paper')"><img src="./Hands/paper - yellow.jpg"></button>
+                <button class="scissors" onclick="setHand('scissors')"><img src="./Hands/scissors - yellow.jpg"></button> 
+            </div>
+
+            <div id="character">
+                <input type="text" placeholder="Enter Your Name" name="name" value=""></input>
+                <img src="./Hands/paper - yellow.jpg" alt="hand" id="hand">
+                <input type="hidden" name="icon" value="paper"></input>
+                <input type="hidden" name="colour" value="yellow"></input>
+            </div>
+   
+            <div id="colour">
+                <button id="white" onclick="setColour('white')"></button>
+                <button id="brown" onclick="setColour('brown')"></button>
+                <button id="black" onclick="setColour('black')"></button>
+            </div>
+
+            <div class="main-buttons">
+                <button class="button" onclick="onSend()">Next</button>
+            </div>
+            
+
+        </div>
+
+        <script>
+
+            // document.addEventListener("DOMContentLoaded", function() {
+            //     localStorage.setItem('name', document.getElementsByName("name")[0].value);
+            //     localStorage.setItem('colour', document.getElementsByName("colour")[0].value);
+            //     localStorage.setItem('icon', document.getElementsByName("icon")[0].value);
+            // });
+
+            function onSend() {
+                localStorage.setItem('name', document.getElementsByName("name")[0].value);
+                localStorage.setItem('colour', document.getElementsByName("colour")[0].value);
+                localStorage.setItem('icon', document.getElementsByName("icon")[0].value);
+                
+                if(document.getElementsByName("name")[0].value == ""){
+                    alert("Enter Your Name!");
+                    return;
+                } 
+
+                window.location.href = "./game.html";
+            }
+
+            function setHand(hand){
+                document.getElementsByName("icon")[0].value = hand;
+                let colour = document.getElementsByName("colour")[0].value;
+                document.getElementById("hand").src = "./Hands/" + hand + " - " + colour + ".jpg";
+            }
+
+            function setColour(colour) {
+                document.getElementsByName("colour")[0].value = colour;
+                let hand = document.getElementsByName("icon")[0].value;
+                document.getElementById("hand").src = "./Hands/" + hand + " - " + colour + ".jpg";
+            }
+
+        </script>
+
+    </body>
+</html>

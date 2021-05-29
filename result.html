@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rock, Paper, Scissors! - Results</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+       
+        <div id="result"></div>
+        <div id="result-container">
+           <div id="you">
+               <h1>You:</h1>
+               <img src="" alt="your choice" id="your-choice">
+            </div>
+           <div id="opponent">
+               <h1>Opponent:</h1>
+               <img src="" alt="your opponent's choice" id="opponent-choice">
+           </div>
+       </div>
+       <div class="main-buttons">
+            <button class="button" onclick="window.location='./game.html';">Play Again</button>
+        </div>
+       <script>
+           let playerChoice = localStorage.getItem('choice');
+           let colour = localStorage.getItem('colour');
+           let computerChoice = null;
+           let computerColour = null;
+           
+            function getCompChoice() {
+                let rps = ["rock", "paper", "scissors"];
+                // let randomChoice = Math.floor(Math.random() * 3);
+                // computerChoice = rps[randomChoice];
+                computerChoice = rps[Math.floor(Math.random() * 3)];
+
+                rpsColour = ["black", "brown", "white", "yellow"];
+                // let randomColour = Math.floor(Math.random() * 4);
+                computerColour = rpsColour[Math.floor(Math.random() * 4)];
+                document.getElementById("opponent-choice").src = "./Hands/" + computerChoice + " - " + computerColour + ".jpg";
+
+            }
+
+            function findWinner() {
+                let result = document.getElementById("result");
+                getCompChoice();
+
+                if (playerChoice == "rock") {
+
+                    if (computerChoice == "rock") {
+
+                        // draw
+                        result.innerText = "It's a Draw!";
+
+                    } else if (computerChoice == "paper") {
+
+                        // computer wins
+                        result.innerText = "You Lose, Computer Wins!";
+
+                    } else if (computerChoice == "scissors") {
+
+                        // player wins
+                        result.innerText = "You Win!";
+                    }
+
+                }
+
+                else if (playerChoice == "paper") {
+
+                    if (computerChoice == "rock") {
+
+                        // player wins
+                        result.innerText = "You Win!";
+
+                    } else if (computerChoice == "paper") {
+
+                        // draw
+                        result.innerText = "It's a Draw!";
+
+                    } else if (computerChoice == "scissors") {
+
+                        // computer wins
+                        result.innerText = "You Lose, Computer Wins!";
+
+                    }
+
+                }
+
+                else if (playerChoice == "scissors") {
+
+                    if (computerChoice == "rock") {
+
+                        // computer wins
+                        result.innerText = "You Lose, Computer Wins!";
+
+                    } else if (computerChoice == "paper") {
+
+                        // player wins
+                        result.innerText = "You Win!";
+
+                    } else if (computerChoice == "scissors") {
+
+                        // draw
+                        result.innerText = "It's a Draw!";
+
+                    }
+
+                }
+
+                else if (playerChoice == "null") {
+                    result.innerText = "You Chose Nothing, You Lose!";
+                    document.getElementById("your-choice").src = "./Hands/nothing.png";
+                    return;
+                }
+
+                document.getElementById("your-choice").src = "./Hands/" + playerChoice + " - " + colour + ".jpg";
+
+            }
+
+            findWinner();
+
+       </script> 
+    </body>
+</html>
